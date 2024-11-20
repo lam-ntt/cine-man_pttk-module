@@ -88,11 +88,7 @@ public class xlChonVe474 extends HttpServlet {
                 int maLichChieu = Integer.parseInt((String) session.getAttribute("maLichChieu"));
                 List<Integer> dsMaGhe = (List<Integer>) session.getAttribute("dsMaGhe");
                 
-                Object dsVeObj = session.getAttribute("dsVe");
                 List<Ve474> dsVe = new ArrayList<>();
-                if(dsVeObj != null) {
-                    dsVe = (List<Ve474>) dsVeObj;
-                }
                 for(Integer i: dsMaGhe) {
                     Ve474 ve = new Ve474(
                             (new LichChieuDao474()).getLichChieu(maLichChieu),
@@ -103,28 +99,23 @@ public class xlChonVe474 extends HttpServlet {
                 }
                 session.setAttribute("dsVe", dsVe);
                 
+                float tongGiaVe = 0;
+                for(Ve474 ve: dsVe) {
+                    tongGiaVe += ve.getGia();
+                }
+                session.setAttribute("tongGiaVe", tongGiaVe);
+                
+                request.setAttribute("success", "Vé đã được cập nhật tạm thời!");
+                getServletContext().getRequestDispatcher("/gdChonVe474.jsp").forward(request, response);
+            }
+            case "xacNhan" -> {
                 session.removeAttribute("maPhim");
                 session.removeAttribute("dsLichChieu");
                 session.removeAttribute("maLichChieu");
                 session.removeAttribute("dsGhe");
                 session.removeAttribute("dsGheDat");
-                
-                request.setAttribute("success", "Vé đã được lưu tạm thời!");
-                getServletContext().getRequestDispatcher("/gdChonVe474.jsp").forward(request, response);
-            }
-            case "tiep" -> {
-                float tongGiaVe = 0;
-                for(Ve474 ve: (List<Ve474>) session.getAttribute("dsVe")) {
-                    tongGiaVe += ve.getGia();
-                }
-                
                 session.removeAttribute("dsMaGhe");
                 
-                session.setAttribute("tongGiaVe", tongGiaVe);
-                session.setAttribute("xacNhan", true);
-                getServletContext().getRequestDispatcher("/gdChonVe474.jsp").forward(request, response);
-            }
-            case "xacNhan" -> {
                 String maThanThiet = request.getParameter("maThanThiet");
                 if(!maThanThiet.equals("")) {
                     if(!(new KhachHangDao474()).ktrMaThanThiet(maThanThiet)) {

@@ -64,7 +64,7 @@
             <div class="section invoice" style="width: 50em; height: 87vh; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: auto;">
             <h1 class="invoice-title">Hóa đơn thanh toán</h1>
             <hr>
-            <table class="table ticket-details"  style="width: 100%; border-collapse: collapse; text-align: center; vertical-align: middle;">
+            <table class="table ticket-details" style="width: 100%; border-collapse: collapse; text-align: center; vertical-align: middle;">
                 <thead>
                     <tr>
                         <th scope="col">STT</th>

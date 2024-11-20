@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/drive/project/inclass/pttk-projects/pttk/web/gdChonVe474.jsp</file>
-            <file>file:/D:/drive/project/inclass/pttk-projects/pttk/src/java/service/HoaDonBanDao474.java</file>
-            <file>file:/D:/drive/project/inclass/pttk-projects/pttk/web/gdThanhToan474.jsp</file>
-            <file>file:/D:/drive/project/inclass/pttk-projects/pttk/src/java/service/VeDao474.java</file>
-            <file>file:/D:/drive/project/inclass/pttk-projects/pttk/src/java/controller/xlChonVe474.java</file>
-            <file>file:/D:/drive/project/inclass/pttk-projects/pttk/src/java/controller/xlDangNhap474.java</file>
-            <file>file:/D:/drive/project/inclass/pttk-projects/pttk/src/java/controller/xlThanhToan474.java</file>
+            <file>file:/D:/drive/project/inclass/pttk-projects/cine-man_pttk-module/web/gdThanhToan474.jsp</file>
+            <file>file:/D:/drive/project/inclass/pttk-projects/cine-man_pttk-module/web/gdChonVe474.jsp</file>
+            <file>file:/D:/drive/project/inclass/pttk-projects/cine-man_pttk-module/src/java/controller/xlThanhToan474.java</file>
+            <file>file:/D:/drive/project/inclass/pttk-projects/cine-man_pttk-module/src/java/controller/xlChonVe474.java</file>
         </group>
     </open-files>
 </project-private>

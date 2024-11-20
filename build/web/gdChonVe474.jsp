@@ -66,91 +66,111 @@
                 <form action="xlChonVe474" method="post" style="width: 100%">
                     <h1>Chọn vé</h1>
                     <hr>
-                    <div class="mb-3">
-                        <label for="phim" class="form-label">Phim</label>
-                        <select id="phim" name="phim" class="form-select"
-                                onchange="this.form.requestSubmit(document.getElementById('chonPhim'))" 
-                                >
-                            <option ${empty maPhim ? 'selected' : ''} disabled >Chọn phim</option>
-                            <c:if test="${not empty dsPhim}">
-                                <c:forEach var="phim" items="${dsPhim}" varStatus="status">
-                                    <option value="${phim.ma}" 
-                                            ${(not empty maPhim && maPhim == phim.ma) ? 'selected' : ''}
-                                            >${phim.ten}</option>
-                                </c:forEach>
-                            </c:if>
-                        </select>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="gio" class="form-label">Giờ chiếu</label>
-                        <select id="gio" name="gio" class="form-select"
-                                onchange="this.form.requestSubmit(document.getElementById('chonGio'))" 
-                                >
-                            <option ${empty maLichChieu ? 'selected' : ''} disabled >Chọn giờ</option>
-                            <c:if test="${not empty dsLichChieu}">
-                                <c:forEach var="lichChieu" items="${dsLichChieu}" varStatus="status">
-                                    <option value="${lichChieu.ma}" 
-                                            ${(not empty maLichChieu && maLichChieu == lichChieu.ma) ? 'selected' : ''}
-                                            >
-                                        <fmt:formatDate value="${lichChieu.batDau}" pattern="HH:mm" /> - 
-                                        <fmt:formatDate value="${lichChieu.ketThuc}" pattern="HH:mm" />
-                                        <fmt:formatDate value="${lichChieu.batDau}" pattern="dd/MM/yyyy" />
-                                    </option>
-                                </c:forEach>
-                            </c:if>
-                        </select>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="ghe" class="form-label">Số ghế</label>
-                        <br>
-                        <div class="btn-group-vertical" role="group">
-                            <c:if test="${not empty dsGhe}">
-                                <c:forEach var="ghe" items="${dsGhe}" varStatus="status">
-                                    <c:if test="${(fn:length(dsGhe) == 64 && status.index % 8 == 0) 
-                                                  || (fn:length(dsGhe) == 80 && status.index % 10 == 0)}">
-                                        <div class="btn-group" role="group"> 
+                    
+                    <div style="display: flex; flex-direction: row; gap: 2em">
+                        <div style="flex: 3.5 3.5 0;">
+                            <div class="mb-3">
+                                <label for="phim" class="form-label">Phim</label>
+                                <select id="phim" name="phim" class="form-select"
+                                        onchange="this.form.requestSubmit(document.getElementById('chonPhim'))" 
+                                        >
+                                    <option ${empty maPhim ? 'selected' : ''} disabled >Chọn phim</option>
+                                    <c:if test="${not empty dsPhim}">
+                                        <c:forEach var="phim" items="${dsPhim}" varStatus="status">
+                                            <option value="${phim.ma}" 
+                                                    ${(not empty maPhim && maPhim == phim.ma) ? 'selected' : ''}
+                                                    >${phim.ten}</option>
+                                        </c:forEach>
                                     </c:if>
+                                </select>
+                            </div>
 
+                            <div class="mb-3">
+                                <label for="gio" class="form-label">Giờ chiếu</label>
+                                <select id="gio" name="gio" class="form-select"
+                                        onchange="this.form.requestSubmit(document.getElementById('chonGio'))" 
+                                        >
+                                    <option ${empty maLichChieu ? 'selected' : ''} disabled >Chọn giờ</option>
                                     <c:if test="${not empty dsLichChieu}">
-                                        <c:set var="found" value="false" />
-                                        <c:forEach var="gheDat" items="${dsGheDat}">
-                                            <c:if test="${gheDat.ma == ghe.ma}">
-                                                <c:set var="found" value="true" />
+                                        <c:forEach var="lichChieu" items="${dsLichChieu}" varStatus="status">
+                                            <option value="${lichChieu.ma}" 
+                                                    ${(not empty maLichChieu && maLichChieu == lichChieu.ma) ? 'selected' : ''}
+                                                    >
+                                                <fmt:formatDate value="${lichChieu.batDau}" pattern="HH:mm" /> - 
+                                                <fmt:formatDate value="${lichChieu.ketThuc}" pattern="HH:mm" />
+                                                <fmt:formatDate value="${lichChieu.batDau}" pattern="dd/MM/yyyy" />
+                                            </option>
+                                        </c:forEach>
+                                    </c:if>
+                                </select>
+                            </div>
+                        </div>
+                                    
+                        <div style="flex: 5 5 0;">
+                            <div class="mb-3">
+                                <label for="ghe" class="form-label">Số ghế</label>
+                                <br>
+                                <div class="btn-group-vertical" role="group" style="display: flex; justify-content: center; align-items: center;">
+                                    <c:if test="${empty dsGhe}">
+                                        <div style="width: 100%; height: 18em; border: 1px solid rgb(225, 225, 225); border-radius: .25em">
+                                        </div>
+                                    </c:if>
+                                    
+                                    <c:if test="${not empty dsGhe}">
+                                        <c:forEach var="ghe" items="${dsGhe}" varStatus="status">
+                                            <c:if test="${(fn:length(dsGhe) == 64 && status.index % 8 == 0) 
+                                                          || (fn:length(dsGhe) == 80 && status.index % 10 == 0)}">
+                                                <div class="btn-group" role="group"> 
+                                            </c:if>
+
+                                            <c:if test="${not empty dsLichChieu}">
+                                                <c:set var="found" value="false" />
+                                                <c:forEach var="gheDat" items="${dsGheDat}">
+                                                    <c:if test="${gheDat.ma == ghe.ma}">
+                                                        <c:set var="found" value="true" />
+                                                    </c:if>
+                                                </c:forEach>
+                                            </c:if>
+
+                                            <c:if test="${not empty dsMaGhe}">
+                                                <c:set var="selected" value="false" />
+                                                <c:forEach var="maGhe" items="${dsMaGhe}">
+                                                    <c:if test="${maGhe == ghe.ma}">
+                                                        <c:set var="selected" value="true" />
+                                                    </c:if>
+                                                </c:forEach>
+                                            </c:if>
+
+                                            <input type="checkbox" class="btn-check" id="${ghe.ma}" name="ghe" value="${ghe.ma}" 
+                                                   onchange="${not empty found && found ? '' : 'this.form.requestSubmit(document.getElementById(\'chonGhe\'))'}"
+                                                   ${(not empty found && found) ? 'readonly' : ''}
+                                                   ${(not empty selected && selected) ? 'checked': ''}
+                                                   >
+                                            <label class="btn btn-light border" for="${ghe.ma}" 
+                                                   style="color: ${not empty found && found ? 'white' : ''}; background-color: ${not empty found && found ? 'grey' : ''}"
+                                                   >${ghe.ten}</label>
+
+                                            <c:if test="${(fn:length(dsGhe) == 64 && status.index % 8 == 7) 
+                                                          || (fn:length(dsGhe) == 80 && status.index % 10 == 9)}">
+                                                </div>
                                             </c:if>
                                         </c:forEach>
                                     </c:if>
+                                </div>
+                            </div>
 
-
-                                    <input type="radio" class="btn-check" id="${ghe.ma}" name="ghe" value="${ghe.ma}" 
-                                           onchange="${not empty found && found ? '' : 'this.form.requestSubmit(document.getElementById(\'chonGhe\'))'}"
-                                           ${not empty found && found ? 'readonly' : ''}
-                                           ${(not empty maGhe && ghe.ma == maGhe) ? 'checked': ''}
-                                           >
-                                    <label class="btn btn-light border" for="${ghe.ma}" 
-                                           style="color: ${not empty found && found ? 'white' : ''}; background-color: ${not empty found && found ? 'grey' : ''}"
-                                           >${ghe.ten}</label>
-
-                                    <c:if test="${(fn:length(dsGhe) == 64 && status.index % 8 == 7) 
-                                                  || (fn:length(dsGhe) == 80 && status.index % 10 == 9)}">
-                                        </div>
-                                    </c:if>
-                                </c:forEach>
-                            </c:if>
-                          </div>
-                    </div>
-
-                    <div class="md-3 mt-3">
-                        <div class="form-text" id="error"></div>
+                            <div class="md-3 mt-3">
+                                <div class="form-text" id="error"></div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="md-3 mt-3" style="float: right;">
                         <button type="submit" id="chonPhim" name="action" value="chonPhim" class="btn btn-dark mb-3" style="display: none">Phim</button>
                         <button type="submit" id="chonGio" name="action" value="chonGio" class="btn btn-dark mb-3" style="display: none">Gio</button>
                         <button type="submit" id="chonGhe" name="action" value="chonGhe" class="btn btn-dark mb-3" style="display: none">Ghe</button>
-                        <button type="submit" name="action" value="luu" class="btn btn-dark mb-3" ${not empty maGhe ? '': 'disabled'}>Lưu</button>
-                        <button type="submit" name="action" value="tiep" class="btn btn-dark mb-3" ${not empty dsVe ? '': 'disabled'}>Tiếp</button>
+                        <button type="submit" name="action" value="luu" class="btn btn-dark mb-3" ${empty dsMaGhe || fn:length(dsMaGhe) == 0 ? 'disabled': ''}>Lưu</button>
+                        <button type="submit" name="action" value="tiep" class="btn btn-dark mb-3" ${empty dsVe ? 'disabled': ''}>Tiếp</button>
                     </div>
                 </form>
             </div>
@@ -234,9 +254,9 @@
     </body>
     
     <script>
-        document.querySelectorAll('input[type="radio"]').forEach(radio => {
-            radio.addEventListener('click', (event) => {
-              if (radio.hasAttribute("readonly")) {
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('click', (event) => {
+              if (checkbox.hasAttribute("readonly")) {
                     document.getElementById("error").innerText = "Ghế này đã được chọn!";
                     event.preventDefault();
               }

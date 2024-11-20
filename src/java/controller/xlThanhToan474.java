@@ -75,25 +75,12 @@ public class xlThanhToan474 extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-//        HttpSession session = request.getSession();
-//        if(session.getAttribute("hoaDonBan") != null) {
-//            request.getRequestDispatcher("gdThanhToan474.jsp").forward(request, response);
-//        }
+        HttpSession session = request.getSession();
+        Object xacThucObj = session.getAttribute("xacThuc");
+        if(xacThucObj == null || Boolean.FALSE.equals(xacThucObj)){
+            getServletContext().getRequestDispatcher("/gdDangNhap474.jsp").forward(request, response);
+        }
         
-        
-//        String maThanThiet = (String) session.getAttribute("maThanThiet");
-//        
-//        float tongGiaVe, chietKhau = 0, thanhTien;
-//        tongGiaVe = (Float) session.getAttribute("tongGiaVe");
-//        if(maThanThiet != null) {
-//            if(maThanThiet.charAt(3) == '1') chietKhau = (float) (tongGiaVe * 0.05);
-//            else if(maThanThiet.charAt(3) == '2') chietKhau = (float) (tongGiaVe * 0.1);
-//            else if(maThanThiet.charAt(3) == '3') chietKhau = (float) (tongGiaVe * 0.15);
-//        }
-//        thanhTien = tongGiaVe - chietKhau;
-//        
-//        session.setAttribute("chietKhau", chietKhau);
-//        session.setAttribute("thanhTien", thanhTien);
         request.getRequestDispatcher("gdThanhToan474.jsp").forward(request, response);
         
     }

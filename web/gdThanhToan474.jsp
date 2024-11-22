@@ -169,8 +169,8 @@
             
         <form action="xlThanhToan474" method="post" style="width: 100%;">
             <div class="md-3 mt-3" style="float: right;"> 
-                <button type="submit" name="action" value="thanhToan" class="btn btn-dark mb-3" ${empty thanhToan ? '': 'disabled'}>Thanh toán</button>
-                <button type="submit" name="action" value="hoanTat" class="btn btn-dark mb-3" ${empty thanhToan ? 'disabled': ''}>Hoàn tất</button>
+                <button type="submit" name="action" value="thanhToan" class="btn btn-dark mb-3" style="display: ${empty thanhToan ? '': 'none'}">Thanh toán</button>
+                <button type="submit" name="action" value="hoanTat" class="btn btn-dark mb-3" style="display: ${empty thanhToan ? 'none': ''}">Hoàn tất</button>
                 
             </div>
         </form>

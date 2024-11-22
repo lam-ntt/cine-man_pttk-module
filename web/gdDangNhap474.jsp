@@ -80,9 +80,6 @@
                 </c:if>
                 <div class="md-3 mt-3"> 
                     <button type="submit" class="btn btn-dark mb-3" style="display: block;">Đăng nhập</button>
-                    <div id="passwordHelpBlock" class="form-text">
-                        Bạn chưa có tài khoản? <a href="xlDangKi474">Đăng kí</a>
-                    </div>
                 </div>
             </form>
         </div>

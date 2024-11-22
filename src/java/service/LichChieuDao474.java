@@ -72,7 +72,7 @@ public class LichChieuDao474 extends Dao474 {
                     resultset.getTimestamp("NGAYLAP"),
                     (new PhimDao474()).getPhim(resultset.getInt("MAPHIM")),
                     (new PhongDao474()).getPhong(resultset.getInt("MAPHONG")),
-                    (new NhanVienDao474()).getNhanVien(resultset.getInt("MANHANVIEN"))
+                    null
             );
             
             return lichChieu;

@@ -60,8 +60,8 @@ public class xlThanhToan474 extends HttpServlet {
         } else if (action.equals("hoanTat")) {
             session.removeAttribute("dsVe");
             session.removeAttribute("tongGiaVe");
-            session.removeAttribute("xacNhan");
-            session.removeAttribute("maThanThiet");
+//            session.removeAttribute("xacNhan");
+//            session.removeAttribute("maThanThiet");
             session.removeAttribute("chietKhau");
             session.removeAttribute("thanhTien");
             session.removeAttribute("hoaDonBan");

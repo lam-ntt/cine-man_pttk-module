@@ -68,7 +68,7 @@
                     <input type="email" id="email" name="email" class="form-control" required>
                 </div>
                 <div class="mb-3">
-                    <label for="ten" class="form-label">Tên người dùng</label>
+                    <label for="ten" class="form-label">Họ tên</label>
                     <input type="text" id="ten" name="ten" class="form-control" required minlength="8">
                 </div>
                 <div class="md-3">
@@ -84,9 +84,6 @@
                 </c:if>
                 <div class="md-3 mt-3">
                     <button type="submit" class="btn btn-dark mb-3" style="display: block;">Đăng kí</button>
-                    <div id="passwordHelpBlock" class="form-text">
-                        Bạn đã có tài khoản? <a href="xlDangNhap474">Đăng nhập</a>
-                    </div>
                 </div>
             </form>
         </div>

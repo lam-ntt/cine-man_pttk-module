@@ -172,62 +172,64 @@
                 </div>
             </form>
         </div>
-
-        <div class="section confirm-ticket" style="width: 50em; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: auto; margin-bottom: 5em">
-            <h1 class="ticket-title">Các vé đã lưu</h1>
-            <hr>
-            <table class="table ticket-details"  style="width: 100%; border-collapse: collapse; text-align: center; vertical-align: middle;">
-                <thead>
-                    <tr>
-                        <th scope="col">STT</th>
-                        <th scope="col">Tên phim</th>
-                        <th scope="col">Giờ chiếu</th>
-                        <th scope="col">Phòng chiếu</th>
-                        <th scope="col">Số ghế</th>
-                        <th scope="col">Giá</th>
-                    </tr>
-                </thead>
-              <tbody>
-                  <c:if test="${not empty dsVe}">
-                      <c:forEach var="ve" items="${dsVe}" varStatus="status" >
-                          <tr>
-                            <th scope="row">${status.index + 1}</th>
-                            <td>${ve.lichChieu.phim.ten}</td>
-                            <td>
-                                <fmt:formatDate value="${ve.lichChieu.batDau}" pattern="HH:mm" /> - 
-                                <fmt:formatDate value="${ve.lichChieu.ketThuc}" pattern="HH:mm" /> 
-                                <fmt:formatDate value="${ve.lichChieu.batDau}" pattern="dd/MM/yyyy"/>
-                            </td>
-                            <td>${ve.lichChieu.phong.ten}</td>
-                            <td>${ve.ghe.ten}</td>
-                            <td>${ve.gia} VND</td>
+                
+        <c:if test="${dsVe != null}">
+            <div class="section confirm-ticket" style="width: 50em; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: auto; margin-bottom: 5em">
+                <h1 class="ticket-title">Các vé đã lưu</h1>
+                <hr>
+                <table class="table ticket-details"  style="width: 100%; border-collapse: collapse; text-align: center; vertical-align: middle;">
+                    <thead>
+                        <tr>
+                            <th scope="col">STT</th>
+                            <th scope="col">Tên phim</th>
+                            <th scope="col">Giờ chiếu</th>
+                            <th scope="col">Phòng chiếu</th>
+                            <th scope="col">Số ghế</th>
+                            <th scope="col">Giá</th>
                         </tr>
-                      </c:forEach>
-                  </c:if>
-                    <tr>
-                        <th scope="row" colspan="5" style="text-align: right;">Tổng giá vé</th>
-                        <td><strong>${not empty tongGiaVe ? tongGiaVe : ''} VND</strong></td>
-                    </tr>
-                </tbody>
-            </table>
+                    </thead>
+                  <tbody>
+                      <c:if test="${not empty dsVe}">
+                          <c:forEach var="ve" items="${dsVe}" varStatus="status" >
+                              <tr>
+                                <th scope="row">${status.index + 1}</th>
+                                <td>${ve.lichChieu.phim.ten}</td>
+                                <td>
+                                    <fmt:formatDate value="${ve.lichChieu.batDau}" pattern="HH:mm" /> - 
+                                    <fmt:formatDate value="${ve.lichChieu.ketThuc}" pattern="HH:mm" /> 
+                                    <fmt:formatDate value="${ve.lichChieu.batDau}" pattern="dd/MM/yyyy"/>
+                                </td>
+                                <td>${ve.lichChieu.phong.ten}</td>
+                                <td>${ve.ghe.ten}</td>
+                                <td>${ve.gia} VND</td>
+                            </tr>
+                          </c:forEach>
+                      </c:if>
+                        <tr>
+                            <th scope="row" colspan="5" style="text-align: right;">Tổng giá vé</th>
+                            <td><strong>${not empty tongGiaVe ? tongGiaVe : ''} VND</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
 
-            <form action="xlChonVe474" method="post" style="width: 100%;">
-                <div class="mb-3" style="width: 200px;">
-                    <label for="maThanThiet" class="form-label">Mã thân thiết</label>
-                    <input type="text" id="maThanThiet" name="maThanThiet" class="form-control">
-                </div>
-                <c:if test="${not empty error}">
-                    <div class="md-3 mt-3">
-                        <div class="form-text">
-                            ${error}
-                        </div>
+                <form action="xlChonVe474" method="post" style="width: 100%;">
+                    <div class="mb-3" style="width: 200px;">
+                        <label for="maThanThiet" class="form-label">Mã thân thiết</label>
+                        <input type="text" id="maThanThiet" name="maThanThiet" class="form-control">
                     </div>
-                </c:if>
-                <div class="md-3 mt-3"> 
-                    <button type="submit" name="action" value="xacNhan" class="btn btn-dark mb-3" style="float: right;"  ${(empty tongGiaVe || tongGiaVe == 0.0) ? 'disabled': ''}>Xác nhận</button>
-                </div>
-            </form>
-        </div>
+                    <c:if test="${not empty error}">
+                        <div class="md-3 mt-3">
+                            <div class="form-text">
+                                ${error}
+                            </div>
+                        </div>
+                    </c:if>
+                    <div class="md-3 mt-3"> 
+                        <button type="submit" name="action" value="xacNhan" class="btn btn-dark mb-3" style="float: right;"  ${(empty tongGiaVe || tongGiaVe == 0.0) ? 'disabled': ''}>Xác nhận</button>
+                    </div>
+                </form>
+            </div>
+        </c:if>
         
         <c:if test="${not empty success}">
             <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" style="position: fixed; bottom: 2em; right: 1em" >

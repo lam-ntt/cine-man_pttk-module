@@ -54,7 +54,8 @@ public class xlChonVe474 extends HttpServlet {
                 session.removeAttribute("dsGhe");
                 session.removeAttribute("dsGheDat");
                 
-                List<LichChieu474> dsLichChieu = (new LichChieuDao474()).getAllLichChieuTheoPhim(Integer.parseInt(maPhim));
+                List<LichChieu474> dsLichChieu = (new LichChieuDao474())
+                        .getAllLichChieuTheoPhim(Integer.parseInt(maPhim));
                 session.setAttribute("dsLichChieu", dsLichChieu);
                 getServletContext().getRequestDispatcher("/gdChonVe474.jsp").forward(request, response);
             }
@@ -109,6 +110,7 @@ public class xlChonVe474 extends HttpServlet {
                 getServletContext().getRequestDispatcher("/gdChonVe474.jsp").forward(request, response);
             }
             case "xacNhan" -> {
+                session.removeAttribute("dsPhim");
                 session.removeAttribute("maPhim");
                 session.removeAttribute("dsLichChieu");
                 session.removeAttribute("maLichChieu");
@@ -130,12 +132,12 @@ public class xlChonVe474 extends HttpServlet {
                             ? (float) (tongGiaVe * 0.15) : (float) 0));
                     float thanhTien = tongGiaVe - chietKhau;
 
-                    session.setAttribute("maThanThiet", maThanThiet);
+//                    session.setAttribute("maThanThiet", maThanThiet);
                     session.setAttribute("chietKhau", chietKhau);
                     session.setAttribute("thanhTien", thanhTien);
                 } else {
                     float tongGiaVe = (Float) session.getAttribute("tongGiaVe");
-                    session.setAttribute("maThanThiet", maThanThiet);
+//                    session.setAttribute("maThanThiet", maThanThiet);
                     session.setAttribute("chietKhau", (float) 0);
                     session.setAttribute("thanhTien", tongGiaVe);
                 }

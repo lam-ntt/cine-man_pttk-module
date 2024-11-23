@@ -29,6 +29,11 @@ public class HoaDon474 implements Serializable {
         this.dsVe = dsVe;
     }
 
+    public HoaDon474(float giaVe, float chietKhau) {
+        this.giaVe = giaVe;
+        this.chietKhau = chietKhau;
+    }
+
     public int getMa() {
         return ma;
     }

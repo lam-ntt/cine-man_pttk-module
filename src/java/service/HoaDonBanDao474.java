@@ -27,14 +27,40 @@ public class HoaDonBanDao474 extends Dao474{
         super();
     }
     
-    public int addHoaDonBan(float giaVe, float chietKhau, int maNhanVien) {
+//    public int addHoaDonBan(float giaVe, float chietKhau, int maNhanVien) {
+//        try {
+//            String query = "INSERT INTO HOADON474(GIAVE, CHIETKHAU, THANHTIEN, TRANGTHAI) VALUES(?, ?, ?, 'Đã thanh toán')"; 
+//            PreparedStatement preparedStatement = 
+//                    con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+//            preparedStatement.setFloat(1, giaVe);
+//            preparedStatement.setFloat(2, chietKhau);
+//            preparedStatement.setFloat(3, giaVe-chietKhau);
+//            preparedStatement.executeUpdate();
+//            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+//            if(!resultSet.next()) return -1;
+//            int maHoaDonBan = resultSet.getInt(1);
+//            
+//            query = "INSERT INTO HOADONBAN474(MA, MANHANVIEN) " + "VALUES(?, ?)"; 
+//            preparedStatement = con.prepareStatement(query);
+//            preparedStatement.setInt(1, maHoaDonBan);
+//            preparedStatement.setInt(2, maNhanVien);
+//            int rowAffected = preparedStatement.executeUpdate();
+//            if(rowAffected != 1) return -1;
+//            return maHoaDonBan;
+//        } catch(SQLException ex) {
+//            ex.printStackTrace();
+//        }
+//        return -1;
+//    }
+    
+    public int addHoaDonBan(HoaDonBan474 hoaDonBan) {
         try {
             String query = "INSERT INTO HOADON474(GIAVE, CHIETKHAU, THANHTIEN, TRANGTHAI) VALUES(?, ?, ?, 'Đã thanh toán')"; 
             PreparedStatement preparedStatement = 
                     con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setFloat(1, giaVe);
-            preparedStatement.setFloat(2, chietKhau);
-            preparedStatement.setFloat(3, giaVe-chietKhau);
+            preparedStatement.setFloat(1, hoaDonBan.getGiaVe());
+            preparedStatement.setFloat(2, hoaDonBan.getChietKhau());
+            preparedStatement.setFloat(3, hoaDonBan.getGiaVe()-hoaDonBan.getChietKhau());
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             if(!resultSet.next()) return -1;
@@ -43,7 +69,7 @@ public class HoaDonBanDao474 extends Dao474{
             query = "INSERT INTO HOADONBAN474(MA, MANHANVIEN) " + "VALUES(?, ?)"; 
             preparedStatement = con.prepareStatement(query);
             preparedStatement.setInt(1, maHoaDonBan);
-            preparedStatement.setInt(2, maNhanVien);
+            preparedStatement.setInt(2, hoaDonBan.getNhanVien().getMa());
             int rowAffected = preparedStatement.executeUpdate();
             if(rowAffected != 1) return -1;
             return maHoaDonBan;

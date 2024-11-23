@@ -17,6 +17,10 @@ public class KhachHang474 extends NguoiDung474 implements Serializable {
         super(ma, email, ten, matKhau);
         this.maThanThiet = maThanThiet;
     }
+    
+    public KhachHang474(String email, String ten, String matKhau) {
+        super(email, ten, matKhau);
+    }
 
     public String getMaThanThiet() {
         return maThanThiet;

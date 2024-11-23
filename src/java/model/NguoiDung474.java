@@ -20,6 +20,12 @@ public class NguoiDung474 implements Serializable {
         this.ten = ten;
         this.matKhau = matKhau;
     }
+    
+    public NguoiDung474(String email, String ten, String matKhau) {
+        this.email = email;
+        this.ten = ten;
+        this.matKhau = matKhau;
+    }
 
     public int getMa() {
         return ma;

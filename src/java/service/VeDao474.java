@@ -20,21 +20,40 @@ import model.Ve474;
  */
 public class VeDao474 extends Dao474 {
     public static void main(String args[]) {
-        System.out.println((new VeDao474()).addVe(54, 31, 1, 1));
+//        System.out.println((new VeDao474()).addVe(54, 31, 1, 1));
     }
     
     public VeDao474() {
         super();
     }
     
-    public boolean addVe(float gia, int maLichChieu, int maGhe, int maHoaDon) {
+//    public boolean addVe(float gia, int maLichChieu, int maGhe, int maHoaDon) {
+//        try {
+//            String query = "INSERT INTO VE474(GIA, MALICHCHIEU, MAGHE, MAHOADON) VALUES(?, ?, ?, ?)"; 
+//            
+//            PreparedStatement preparedStatement = con.prepareStatement(query);
+//            preparedStatement.setFloat(1, gia);
+//            preparedStatement.setInt(2, maLichChieu);
+//            preparedStatement.setInt(3, maGhe);
+//            preparedStatement.setInt(4, maHoaDon);
+//            int rowAffected = preparedStatement.executeUpdate();
+//            
+//            if(rowAffected != 1) return false;
+//            return true;
+//        } catch(SQLException ex) {
+//            ex.printStackTrace();
+//        }
+//        return false;
+//    }
+    
+    public boolean addVe(Ve474 ve, int maHoaDon) {
         try {
             String query = "INSERT INTO VE474(GIA, MALICHCHIEU, MAGHE, MAHOADON) VALUES(?, ?, ?, ?)"; 
             
             PreparedStatement preparedStatement = con.prepareStatement(query);
-            preparedStatement.setFloat(1, gia);
-            preparedStatement.setInt(2, maLichChieu);
-            preparedStatement.setInt(3, maGhe);
+            preparedStatement.setFloat(1, ve.getGia());
+            preparedStatement.setInt(2, ve.getLichChieu().getMa());
+            preparedStatement.setInt(3, ve.getGhe().getMa());
             preparedStatement.setInt(4, maHoaDon);
             int rowAffected = preparedStatement.executeUpdate();
             

@@ -25,14 +25,38 @@ public class KhachHangDao474 extends Dao474 {
         super();
     }
     
-    public boolean addKhackHang(String email, String ten, String matKhau) {
+//    public boolean addKhackHang(String email, String ten, String matKhau) {
+//        try {
+//            String query = "INSERT INTO NGUOIDUNG474(EMAIL, TEN, MATKHAU) VALUES(?, ?, ?)"; 
+//            PreparedStatement preparedStatement = 
+//                    con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+//            preparedStatement.setString(1, email);
+//            preparedStatement.setString(2, ten);
+//            preparedStatement.setString(3, matKhau);
+//            preparedStatement.executeUpdate();
+//            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+//            if(!resultSet.next()) return false;
+//            int maKhachHang = resultSet.getInt(1);
+//            
+//            query = "INSERT INTO KHACHHANG474(MA) " + "VALUES(?)"; 
+//            preparedStatement = con.prepareStatement(query);
+//            preparedStatement.setInt(1, maKhachHang);
+//            int rowAffected = preparedStatement.executeUpdate();
+//            return rowAffected == 1;
+//        } catch(SQLException ex) {
+//            ex.printStackTrace();
+//        }
+//        return false;
+//    }
+    
+    public boolean addKhackHang(KhachHang474 khachHang) {
         try {
             String query = "INSERT INTO NGUOIDUNG474(EMAIL, TEN, MATKHAU) VALUES(?, ?, ?)"; 
             PreparedStatement preparedStatement = 
                     con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1, email);
-            preparedStatement.setString(2, ten);
-            preparedStatement.setString(3, matKhau);
+            preparedStatement.setString(1, khachHang.getEmail());
+            preparedStatement.setString(2, khachHang.getTen());
+            preparedStatement.setString(3, khachHang.getMatKhau());
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             if(!resultSet.next()) return false;

@@ -43,20 +43,25 @@ public class xlThanhToan474 extends HttpServlet {
             NhanVien474 nhanVien = (NhanVien474) session.getAttribute("nhanVienBanHang");
             
             HoaDonBanDao474 hoaDonBanDao = new HoaDonBanDao474();
-            int maHoaDonBan = hoaDonBanDao.addHoaDonBan(tongGiaVe, chietKhau, nhanVien.getMa());
+            HoaDonBan474 hoaDonBan = new HoaDonBan474(tongGiaVe, chietKhau, nhanVien);
+            int maHoaDonBan = hoaDonBanDao.addHoaDonBan(hoaDonBan);
+//            int maHoaDonBan = hoaDonBanDao.addHoaDonBan(tongGiaVe, chietKhau, nhanVien.getMa());
             
             VeDao474 veDao = new VeDao474();
             List<Ve474> dsVe = (List<Ve474>) session.getAttribute("dsVe");
             for(Ve474 ve: dsVe) {
-                veDao.addVe(ve.getGia(), ve.getLichChieu().getMa(), ve.getGhe().getMa(), maHoaDonBan);
+//                veDao.addVe(ve.getGia(), ve.getLichChieu().getMa(), ve.getGhe().getMa(), maHoaDonBan);
+                veDao.addVe(ve, maHoaDonBan);
             }
             
-            HoaDonBan474 hoaDonBan = hoaDonBanDao.getHoaDonBan(maHoaDonBan);
+//            HoaDonBan474 hoaDonBan = hoaDonBanDao.getHoaDonBan(maHoaDonBan);
+            hoaDonBan = hoaDonBanDao.getHoaDonBan(maHoaDonBan);
+            
             session.setAttribute("hoaDonBan", hoaDonBan);
             session.setAttribute("thanhToan", true);
             
             request.setAttribute("success", "Thanh toán hóa đơn thành công!");
-            request.getRequestDispatcher("gdThanhToan474.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/nhanvien/gdThanhToan474.jsp").forward(request, response);
         } else if (action.equals("hoanTat")) {
             session.removeAttribute("dsVe");
             session.removeAttribute("tongGiaVe");
@@ -67,7 +72,7 @@ public class xlThanhToan474 extends HttpServlet {
             session.removeAttribute("hoaDonBan");
             session.removeAttribute("thanhToan");
             
-            request.getRequestDispatcher("gdChinh474.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/nguoidung/gdChinh474.jsp").forward(request, response);
         }
     }
 
@@ -78,10 +83,10 @@ public class xlThanhToan474 extends HttpServlet {
         HttpSession session = request.getSession();
         Object xacThucObj = session.getAttribute("xacThuc");
         if(xacThucObj == null || Boolean.FALSE.equals(xacThucObj)){
-            getServletContext().getRequestDispatcher("/gdDangNhap474.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/view/nguoidung/gdDangNhap474.jsp").forward(request, response);
         }
         
-        request.getRequestDispatcher("gdThanhToan474.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/nhanvien/gdThanhToan474.jsp").forward(request, response);
         
     }
 

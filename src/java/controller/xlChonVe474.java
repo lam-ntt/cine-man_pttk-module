@@ -57,7 +57,7 @@ public class xlChonVe474 extends HttpServlet {
                 List<LichChieu474> dsLichChieu = (new LichChieuDao474())
                         .getAllLichChieuTheoPhim(Integer.parseInt(maPhim));
                 session.setAttribute("dsLichChieu", dsLichChieu);
-                getServletContext().getRequestDispatcher("/gdChonVe474.jsp").forward(request, response);
+                getServletContext().getRequestDispatcher("/view/nhanvien/gdChonVe474.jsp").forward(request, response);
             }
             case "chonGio" -> {
                 String maLichChieu = request.getParameter("gio");
@@ -71,7 +71,7 @@ public class xlChonVe474 extends HttpServlet {
                 List<Ghe474> dsGheDat = gheDao.getAllGheDatTheoLichChieu(Integer.parseInt(maLichChieu));            
                 session.setAttribute("dsGhe", dsGhe);
                 session.setAttribute("dsGheDat", dsGheDat);
-                getServletContext().getRequestDispatcher("/gdChonVe474.jsp").forward(request, response);
+                getServletContext().getRequestDispatcher("/view/nhanvien/gdChonVe474.jsp").forward(request, response);
             }
             case "chonGhe" -> {
                 String[] dsMaGheStr = request.getParameterValues("ghe");
@@ -83,7 +83,7 @@ public class xlChonVe474 extends HttpServlet {
                 }
                 
                 session.setAttribute("dsMaGhe", dsMaGhe);
-                getServletContext().getRequestDispatcher("/gdChonVe474.jsp").forward(request, response);
+                getServletContext().getRequestDispatcher("/view/nhanvien/gdChonVe474.jsp").forward(request, response);
             }
             case "luu" -> {
                 int maLichChieu = Integer.parseInt((String) session.getAttribute("maLichChieu"));
@@ -107,7 +107,7 @@ public class xlChonVe474 extends HttpServlet {
                 session.setAttribute("tongGiaVe", tongGiaVe);
                 
                 request.setAttribute("success", "Vé đã được cập nhật tạm thời!");
-                getServletContext().getRequestDispatcher("/gdChonVe474.jsp").forward(request, response);
+                getServletContext().getRequestDispatcher("/view/nhanvien/gdChonVe474.jsp").forward(request, response);
             }
             case "xacNhan" -> {
                 session.removeAttribute("dsPhim");
@@ -122,7 +122,7 @@ public class xlChonVe474 extends HttpServlet {
                 if(!maThanThiet.equals("")) {
                     if(!(new KhachHangDao474()).ktrMaThanThiet(maThanThiet)) {
                         request.setAttribute("error", "Mã thân thiết này không hợp lệ!");
-                        getServletContext().getRequestDispatcher("/gdChonVe474.jsp").forward(request, response);
+                        getServletContext().getRequestDispatcher("/view/nhanvien/gdChonVe474.jsp").forward(request, response);
                     }
                     
                     float tongGiaVe = (Float) session.getAttribute("tongGiaVe");
@@ -155,13 +155,13 @@ public class xlChonVe474 extends HttpServlet {
         HttpSession session = request.getSession();
         Object xacThucObj = session.getAttribute("xacThuc");
         if(xacThucObj == null || Boolean.FALSE.equals(xacThucObj)){
-            getServletContext().getRequestDispatcher("/gdDangNhap474.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/view/nguoidung/gdDangNhap474.jsp").forward(request, response);
         }
         
         PhimDao474 phimDao = new PhimDao474();
         List<Phim474> dsPhim = phimDao.getAllPhim();
         session.setAttribute("dsPhim", dsPhim);
-        request.getRequestDispatcher("/gdChonVe474.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/nhanvien/gdChonVe474.jsp").forward(request, response);
     }
 
 }

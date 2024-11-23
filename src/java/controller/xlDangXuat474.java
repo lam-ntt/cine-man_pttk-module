@@ -40,7 +40,7 @@ public class xlDangXuat474 extends HttpServlet {
         HttpSession session = request.getSession();
         session.removeAttribute("nhanVienBanHang");
         session.removeAttribute("xacThuc");
-        request.getRequestDispatcher("gdDangNhap474.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/nguoidung/gdDangNhap474.jsp").forward(request, response);
         
         PrintWriter out = response.getWriter();
         out.println("OK");

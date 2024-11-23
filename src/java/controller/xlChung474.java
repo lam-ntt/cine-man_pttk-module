@@ -90,7 +90,7 @@ public class xlChung474 extends HttpServlet {
 //            response.sendRedirect("login.jsp");
 //        }
         
-        request.getRequestDispatcher("gdChinh474.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/nguoidung/gdChinh474.jsp").forward(request, response);
     }
 
 }

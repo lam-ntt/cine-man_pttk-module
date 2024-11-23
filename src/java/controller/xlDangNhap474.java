@@ -36,18 +36,18 @@ public class xlDangNhap474 extends HttpServlet {
         NguoiDungDao474 nguoiDungDao = new NguoiDungDao474();
         if(!nguoiDungDao.ktraEmailTonTai(email)) {
             request.setAttribute("error", "Email này không tồn tại trong hệ thống. Vui lòng đăng kí tài khoản!");
-            getServletContext().getRequestDispatcher("/gdDangNhap474.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/view/nguoidung/gdDangNhap474.jsp").forward(request, response);
         }
         
         NhanVienDao474 nhanVienDao = new NhanVienDao474();
         NhanVien474 nhanVien = nhanVienDao.getNhanVienTheoEmail(email);
         if(nhanVien == null) {
             request.setAttribute("error", "Email này không hợp lệ. Vui lòng thử lại!");
-            getServletContext().getRequestDispatcher("/gdDangNhap474.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/view/nguoidung/gdDangNhap474.jsp").forward(request, response);
         }
         if(!nhanVien.getMatKhau().equals(Hash.hash(matKhau))) {
             request.setAttribute("error", "Mật khẩu không chính xác. Vui lòng thử lại!");
-            getServletContext().getRequestDispatcher("/gdDangNhap474.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/view/nguoidung/gdDangNhap474.jsp").forward(request, response);
             
         }
         
@@ -55,7 +55,8 @@ public class xlDangNhap474 extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("xacThuc", true);
             session.setAttribute("nhanVienBanHang", nhanVien);
-            response.sendRedirect("/pttk/gdChinh474.jsp");
+            getServletContext().getRequestDispatcher("/view/nguoidung/gdChinh474.jsp").forward(request, response);
+//            response.sendRedirect("/pttk/view/nguoidung/gdChinh474.jsp");
         }
     }
 
@@ -63,7 +64,7 @@ public class xlDangNhap474 extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        request.getRequestDispatcher("gdDangNhap474.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/nguoidung/gdDangNhap474.jsp").forward(request, response);
     }
 
 }

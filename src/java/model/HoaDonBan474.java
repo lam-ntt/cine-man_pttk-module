@@ -19,6 +19,11 @@ public class HoaDonBan474 extends HoaDon474 implements Serializable {
         super(ma, giaVe, chietKhau, thanhTien, trangThai, ngayLapStamp, dsVe);
         this.nhanVien = nhanVien;
     }
+    
+    public HoaDonBan474(float giaVe, float chietKhau, NhanVien474 nhanVien) {
+        super(giaVe, chietKhau);
+        this.nhanVien = nhanVien;
+    }
 
     public NhanVien474 getNhanVien() {
         return nhanVien;
